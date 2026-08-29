@@ -9,7 +9,8 @@ Balance = 100000
 
 def restart():
     choice = input('Do you want to perform another transaction?(Yes/No): ')
-    if choice == 'Yes':
+    choice_sentencecase = choice.capitalize()-
+    if choice_sentencecase == 'Yes':
         username = input('Enter Your Name: ')
         print(f'Hi {username}, \nSelect an Option')
         print()
@@ -23,7 +24,7 @@ def restart():
 def transactions():
     print()
     o = input('Accept option: ')
-    if o == 'a':
+    if o == 'a'.lower():
         print(f'Your account balance is {Balance} Naira')
         restart()
     elif o == 'b':
@@ -33,19 +34,25 @@ def transactions():
         print(f'Your new balance is {new_balance}')
         restart()
     elif o == 'c':
-        amount_to_withdraw = int(input('Amount to Withdraw: '))
-        if amount_to_withdraw > Balance:
-            print('Insufficient Funds')
-        else:
-            print('Take your cash')
+        try:
+            amount_to_withdraw = float(input('Amount to Withdraw: '))
+            if amount_to_withdraw > Balance:
+                print('Insufficient Funds')
+            else:
+                print('Take your cash')
+        except:
+            print('Kindly input numbers only')
         restart()
     elif o == 'd':
-        input('Recipient Account: ')
-        amount_to_transfer = int(input('Amount to transfer: '))
-        if amount_to_transfer > Balance:
-            print('Insufficient Funds')
-        else:
-            print('Transaction Successful')
+        try:
+            int(input('Recipient Account: '))
+            amount_to_transfer = int(input('Amount to transfer: '))
+            if amount_to_transfer > Balance:
+                print('Insufficient Funds')
+            else:
+                print('Transaction Successful')
+        except:
+            print('Account numbers can only be numbers, not alphabets')
         restart()
     elif o == 'e':
         int(input('Phone number: '))
